@@ -1414,13 +1414,14 @@ void getLocalSearchOperatorSamplings(
 
 	HealpixSampling sampling;
 	std::vector<int> pointer_dir_nonzeroprior, pointer_psi_nonzeroprior;
+	std::vector<int> ind_list;
 
 	op_samplings.clear();
 
 	op_tmp.clear();
 	op_mat.clear();
 	sampling.clear();
-	pointer_dir_nonzeroprior.clear(); pointer_psi_nonzeroprior.clear();
+	pointer_dir_nonzeroprior.clear(); pointer_psi_nonzeroprior.clear(); ind_list.clear();
 
 	if ( (VEC_XSIZE(op_old) != NR_LOCALSYM_PARAMETERS) || (VEC_XSIZE(op_search_ranges) != NR_LOCALSYM_PARAMETERS) )
 		REPORT_ERROR("ERROR: Input operator contains syntax error!");
@@ -1489,7 +1490,7 @@ void getLocalSearchOperatorSamplings(
 	{
 		std::vector<RFLOAT> dummy1, dummy2;
 
-		pointer_dir_nonzeroprior.clear(); pointer_psi_nonzeroprior.clear();
+		pointer_dir_nonzeroprior.clear(); pointer_psi_nonzeroprior.clear(); ind_list.clear();
 		dummy1.clear(); dummy2.clear();
 
 		// Get healpix order and mode
@@ -1521,7 +1522,7 @@ void getLocalSearchOperatorSamplings(
 		{
 			sampling.selectOrientationsWithNonZeroPriorProbability(
 					aa_init, bb_init, gg_init, aa_range, bb_range, gg_range,
-		    		pointer_dir_nonzeroprior, dummy1, pointer_psi_nonzeroprior, dummy2, false, 1.);
+		    		pointer_dir_nonzeroprior, dummy1, pointer_psi_nonzeroprior, dummy2, ind_list, false, 1.);
 		}
 		else
 		{

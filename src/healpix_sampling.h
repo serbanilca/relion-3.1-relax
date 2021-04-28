@@ -238,6 +238,16 @@ public:
     		RFLOAT sigma_rot, RFLOAT sigma_tilt, RFLOAT sigma_psi,
     		std::vector<int> &pointer_dir_nonzeroprior, std::vector<RFLOAT> &directions_prior,
     		std::vector<int> &pointer_psi_nonzeroprior, std::vector<RFLOAT> &psi_prior,
+		std::vector<int> &ind_list,
+			bool do_bimodal_search_psi = false,
+    		RFLOAT sigma_cutoff = 3., RFLOAT sigma_tilt_from_ninety = -1., RFLOAT sigma_psi_from_zero = -1.);
+
+    void selectOrientationsWithNonZeroPriorProbabilityForSymmetryRelaxation(
+    		RFLOAT prior_rot, RFLOAT prior_tilt, RFLOAT prior_psi,
+    		RFLOAT sigma_rot, RFLOAT sigma_tilt, RFLOAT sigma_psi,
+    		std::vector<int> &pointer_dir_nonzeroprior, std::vector<RFLOAT> &directions_prior,
+    		std::vector<int> &pointer_psi_nonzeroprior, std::vector<RFLOAT> &psi_prior,
+		std::vector<int> &ind_list,
 			bool do_bimodal_search_psi = false,
     		RFLOAT sigma_cutoff = 3., RFLOAT sigma_tilt_from_ninety = -1., RFLOAT sigma_psi_from_zero = -1.);
 
@@ -246,16 +256,11 @@ public:
     		RFLOAT sigma_rot, RFLOAT sigma_tilt, RFLOAT sigma_psi,
     		std::vector<int> &pointer_dir_nonzeroprior, std::vector<RFLOAT> &directions_prior,
     		std::vector<int> &pointer_psi_nonzeroprior, std::vector<RFLOAT> &psi_prior,
+		std::vector<int> &ind_list,
     		bool do_auto_refine_local_searches,
     		RFLOAT prior_psi_flip_ratio = 0.5,
 			RFLOAT prior_rot_flip_ratio = 0.5,  // KThurber
     		RFLOAT sigma_cutoff = 3.);
-
-    // Find the symmetry mate by searching the Healpix library
-    void findSymmetryMate(long int idir_, RFLOAT prior_,
-    		std::vector<int> &pointer_dir_nonzeroprior,
-			std::vector<RFLOAT> &directions_prior,
-			std::vector<bool> &idir_flag);
 
     /** Get the symmetry group of this sampling object
      */

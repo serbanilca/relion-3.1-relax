@@ -146,7 +146,7 @@ void getFourierTransformsAndCtfs(long int part_id,
 					sqrt(baseMLO->mymodel.sigma2_tilt),
 					sqrt(baseMLO->mymodel.sigma2_psi),
 					op.pointer_dir_nonzeroprior, op.directions_prior,
-					op.pointer_psi_nonzeroprior, op.psi_prior, false, 3.,
+					op.pointer_psi_nonzeroprior, op.psi_prior, op.ind_list, false, 3.,
 					baseMLO->mymodel.sigma_tilt_bodies[ibody],
 					baseMLO->mymodel.sigma_psi_bodies[ibody]);
 
@@ -182,14 +182,20 @@ void getFourierTransformsAndCtfs(long int part_id,
 			{
 				baseMLO->sampling.selectOrientationsWithNonZeroPriorProbabilityFor3DHelicalReconstruction(prior_rot, prior_tilt, prior_psi,
 										sqrt(baseMLO->mymodel.sigma2_rot), sqrt(baseMLO->mymodel.sigma2_tilt), sqrt(baseMLO->mymodel.sigma2_psi),
-										op.pointer_dir_nonzeroprior, op.directions_prior, op.pointer_psi_nonzeroprior, op.psi_prior,
+										op.pointer_dir_nonzeroprior, op.directions_prior, op.pointer_psi_nonzeroprior, op.psi_prior, op.ind_list,
 										do_local_angular_searches, prior_psi_flip_ratio);
+			}
+			else if (baseMLO->sampling.fn_sym_relax != "")
+			{
+				baseMLO->sampling.selectOrientationsWithNonZeroPriorProbabilityForSymmetryRelaxation(prior_rot, prior_tilt, prior_psi,
+						sqrt(baseMLO->mymodel.sigma2_rot), sqrt(baseMLO->mymodel.sigma2_tilt), sqrt(baseMLO->mymodel.sigma2_psi),
+						op.pointer_dir_nonzeroprior, op.directions_prior, op.pointer_psi_nonzeroprior, op.psi_prior, op.ind_list);			
 			}
 			else
 			{
 				baseMLO->sampling.selectOrientationsWithNonZeroPriorProbability(prior_rot, prior_tilt, prior_psi,
 						sqrt(baseMLO->mymodel.sigma2_rot), sqrt(baseMLO->mymodel.sigma2_tilt), sqrt(baseMLO->mymodel.sigma2_psi),
-						op.pointer_dir_nonzeroprior, op.directions_prior, op.pointer_psi_nonzeroprior, op.psi_prior);
+						op.pointer_dir_nonzeroprior, op.directions_prior, op.pointer_psi_nonzeroprior, op.psi_prior, op.ind_list);
 			}
 
 			long int nr_orients = baseMLO->sampling.NrDirections(0, &op.pointer_dir_nonzeroprior) * baseMLO->sampling.NrPsiSamplings(0, &op.pointer_psi_nonzeroprior);

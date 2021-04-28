@@ -922,7 +922,8 @@ public:
 			std::vector<int> &exp_pointer_dir_nonzeroprior,
 			std::vector<int> &exp_pointer_psi_nonzeroprior,
 			std::vector<RFLOAT> &exp_directions_prior,
-			std::vector<RFLOAT> &exp_psi_prior);
+			std::vector<RFLOAT> &exp_psi_prior,
+			std::vector<int> &exp_ind_list);
 
 	/* Store all shifted FourierTransforms in a vector
 	 * also store precalculated 2D matrices with 1/sigma2_noise
@@ -956,6 +957,7 @@ public:
 			MultidimArray<bool> &exp_Mcoarse_significant,
 			std::vector<int> &exp_pointer_dir_nonzeroprior, std::vector<int> &exp_pointer_psi_nonzeroprior,
 			std::vector<RFLOAT> &exp_directions_prior, std::vector<RFLOAT> &exp_psi_prior,
+			std::vector<int> &exp_ind_list,
 			std::vector<std::vector<MultidimArray<Complex > > > &exp_local_Fimgs_shifted,
 			std::vector<MultidimArray<RFLOAT> > &exp_local_Minvsigma2,
 			std::vector<MultidimArray<RFLOAT> > &exp_local_Fctf,
@@ -971,7 +973,7 @@ public:
 			std::vector<RFLOAT> &exp_significant_weight, std::vector<RFLOAT> &exp_sum_weight,
 			std::vector<Matrix1D<RFLOAT> > &exp_old_offset, std::vector<Matrix1D<RFLOAT> > &exp_prior, std::vector<RFLOAT> &exp_min_diff2,
 			std::vector<int> &exp_pointer_dir_nonzeroprior, std::vector<int> &exp_pointer_psi_nonzeroprior,
-			std::vector<RFLOAT> &exp_directions_prior, std::vector<RFLOAT> &exp_psi_prior);
+			std::vector<RFLOAT> &exp_directions_prior, std::vector<RFLOAT> &exp_psi_prior, std::vector<int> &exp_ind_list);
 
 	// Store all relevant weighted sums, also return optimal hidden variables, max_weight and dLL
 	void storeWeightedSums(long int part_id, int ibody,
@@ -993,6 +995,7 @@ public:
 			std::vector<RFLOAT> &exp_max_weight,
 			std::vector<int> &exp_pointer_dir_nonzeroprior, std::vector<int> &exp_pointer_psi_nonzeroprior,
 			std::vector<RFLOAT> &exp_directions_prior, std::vector<RFLOAT> &exp_psi_prior,
+			std::vector<int> &exp_ind_list,
 			std::vector<std::vector<MultidimArray<Complex > > > &exp_local_Fimgs_shifted,
 			std::vector<std::vector<MultidimArray<Complex > > > &exp_local_Fimgs_shifted_nomask,
 			std::vector<MultidimArray<RFLOAT> > &exp_local_Minvsigma2,
